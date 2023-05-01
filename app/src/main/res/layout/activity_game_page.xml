@@ -1,9 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GamePage">
+    tools:context=".GamePage"
+    android:orientation="vertical"
+    android:background="@color/blue4">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/GameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fontFamily="@font/monoglyceride"
+        android:text="Quiz"
+        android:textColor="@color/blue1"
+        android:textSize="@dimen/_30ssp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/Score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@color/blue1"
+        android:fontFamily="@font/monoglyceridedemibold"
+        android:padding="@dimen/_5sdp"
+        android:hint="Score"
+        android:textAlignment="center"
+        android:textColor="@color/blue5"
+        android:textSize="@dimen/_30ssp"/>
+
+    <LinearLayout
+        android:id="@+id/MCQ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/GameTitle"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Question"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/blue4"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardElevation="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/GivenQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:background="@color/blue2"
+                android:hint="Question for the quiz"
+                android:paddingTop="@dimen/_10sdp"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/blue5"
+                android:textSize="@dimen/_12ssp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Options"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/blue4"
+            app:cardCornerRadius="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:cardElevation="@dimen/_10sdp">
+
+            <ListView
+                android:layout_margin="@dimen/_10sdp"
+                android:id="@+id/AnsOptions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/answerbox"
+                android:textAlignment="center"
+                android:cacheColorHint="@color/blue1"/>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignTop="@+id/MCQ"
+        android:layout_marginTop="@dimen/_360sdp"
+        android:orientation="horizontal"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text="Reset"
+            android:textAllCaps="false"
+            android:textColor="@color/blue1"
+            android:background="@drawable/navigationbuttons"
+            android:fontFamily="@font/prototype"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@color/blue1"
+            android:background="@drawable/navigationbuttons"
+            android:fontFamily="@font/prototype"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/Exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text="Exit"
+            android:textAllCaps="false"
+            android:textColor="@color/blue1"
+            android:background="@drawable/navigationbuttons"
+            android:fontFamily="@font/prototype"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
