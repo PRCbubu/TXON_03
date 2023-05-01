@@ -67,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
                 android:background="@color/blue2"
+                android:scrollbars="vertical"
                 android:hint="Question for the quiz"
                 android:paddingTop="@dimen/_10sdp"
                 android:textAlignment="center"
