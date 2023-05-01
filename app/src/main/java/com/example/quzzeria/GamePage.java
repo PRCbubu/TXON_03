@@ -15,20 +15,19 @@ import java.util.ArrayList;
 
 public class GamePage extends AppCompatActivity
 {
-    int isPressed = 0;
     private void setQuestion(String Question)
     {
         AppCompatTextView QuestionBox = findViewById(R.id.GivenQuestion);
         QuestionBox.setText(Question);
     }
-
-    private int setAnswers(ArrayList<String> Answers)
+    final int[] num = new int[1];
+    private void setAnswers(ArrayList<String> Answers)
     {
         ListView ansList = findViewById(R.id.AnsOptions);
         ArrayAdapter<String> options = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Answers);
         ansList.setAdapter(options);
 
-        final int[] num = new int[1];
+
 
         ansList.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -36,49 +35,67 @@ public class GamePage extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
                 num[0] = i;
-                Toast.makeText(getApplicationContext(), "Pressed", Toast.LENGTH_SHORT).show();
-                isPressed++;
+                setScore();
+                newQuesAns();
             }
         });
-
-        return num[0];
     }
     int marks = 0;
+    ArrayList<String> getSet;
+    QuestionAnswers q1 = new QuestionAnswers();
+    ArrayList<String> finishedQuestions = new ArrayList<>();
     @SuppressLint("SetTextI18n")
-    private void setScore(boolean ans)
+    private void setScore()
     {
         AppCompatTextView score = findViewById(R.id.Score);
 
-        if(ans)
+        if (q1.checkAns(getSet.get(num[0] + 1)))
+        {
+            Toast.makeText(getApplicationContext(), "Pressed", Toast.LENGTH_SHORT).show();
             marks++;
+        }
+
 
         score.setText(marks+"/10");
     }
-    private void setNewQuestions()
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_page);
-        QuestionAnswers q1 = new QuestionAnswers();
-        ArrayList<String> getSet;
-        ArrayList<QuestionAnswers> questionAnswers = new ArrayList<>();
 
+    //ArrayList<QuestionAnswers> questionAnswers = new ArrayList<>();
+    private void newQuesAns()
+    {
+        ArrayList<String> ans = new ArrayList<>();
 
         getSet = q1.answerRandomizer();
 
-        setQuestion(getSet.get(0));
+        for(String e : finishedQuestions)
+        {
+            if(e == null || !e.equals(getSet.get(0)))
+                setQuestion(getSet.get(0));
+            else
+            {
+                getSet = q1.answerRandomizer();
+                setQuestion(getSet.get(0));
+            }
+        }
 
-        ArrayList<String> ans = new ArrayList<>();
+        finishedQuestions.add(getSet.get(0));
 
         for(int i = 1; i<getSet.size(); i++)
         {
             ans.add(getSet.get(i));
         }
+        setAnswers(ans);
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game_page);
+
+        newQuesAns();
 
 
-        setScore(q1.checkAns(getSet.get(setAnswers(ans))));
 
+        //setScore(q1.checkAns(getSet.get(setAnswers(ans))));
 
     }
 }
